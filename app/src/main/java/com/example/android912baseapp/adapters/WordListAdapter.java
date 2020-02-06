@@ -18,18 +18,29 @@ public class WordListAdapter extends
     private final LinkedList<String> mWordList;
     private final LayoutInflater mInflater;
 
-    class WordViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class WordViewHolder extends RecyclerView.ViewHolder  {
         public final TextView wordItemView;
         final WordListAdapter mAdapter;
+        private View.OnClickListener onCLick = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int mPosition = getLayoutPosition();
+
+                String element = mWordList.get(mPosition);
+
+                mWordList.set(mPosition, "Clicked! " + element);
+                mAdapter.notifyDataSetChanged();
+            }
+        };
 
         public WordViewHolder(View itemView, WordListAdapter adapter) {
             super(itemView);
             wordItemView = itemView.findViewById(R.id.word);
             this.mAdapter = adapter;
-            itemView.setOnClickListener(this);
+            itemView.setOnClickListener(onCLick);
         }
 
-        @Override
+       /* @Override
         public void onClick(View view) {
             int mPosition = getLayoutPosition();
 
@@ -37,7 +48,7 @@ public class WordListAdapter extends
 
             mWordList.set(mPosition, "Clicked! " + element);
             mAdapter.notifyDataSetChanged();
-        }
+        }*/
     }
 
     public WordListAdapter(Context context, LinkedList<String> wordList) {
