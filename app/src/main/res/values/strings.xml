@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Android912BaseApp</string>
+
+    <string name="hello_blank_fragment_1">Hello blank fragment 1</string>
+    <string name="hello_blank_fragment_2">Hello blank fragment 2</string>
+    <string name="android_912_base_project">Android 912 Base project</string>
+    <string name="title_swipe">Just Swipe</string>
 </resources>

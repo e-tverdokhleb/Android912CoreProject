@@ -11,26 +11,21 @@ import androidx.fragment.app.Fragment;
 
 import com.example.android912baseapp.R;
 
-public class Fragment1 extends Fragment {
+public class Fragment2 extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     private String mParam1;
     private String mParam2;
 
-    private OnFragmentInteractionListener mListener;
-
-    public Fragment1() {
-        // Required empty public constructor
+    public interface OnFragmentInteractionListener {
+        void onFragmentInteraction(Uri uri);
     }
 
-    public static Fragment1 newInstance(String param1, String param2) {
-        Fragment1 fragment = new Fragment1();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    private OnFragmentInteractionListener mListener;
+
+    public Fragment2() {
+        // Required empty public constructor
     }
 
     @Override
@@ -45,14 +40,9 @@ public class Fragment1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_fragment_1, container, false);
+        return inflater.inflate(R.layout.fragment_fragment_2, container, false);
     }
 
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
 
     @Override
     public void onAttach(Context context) {
@@ -71,9 +61,20 @@ public class Fragment1 extends Fragment {
         mListener = null;
     }
 
-
-
-    public interface OnFragmentInteractionListener {
-        void onFragmentInteraction(Uri uri);
+    public static Fragment2 newInstance(String param1, String param2) {
+        Fragment2 fragment = new Fragment2();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
     }
+
+    public void onButtonPressed(Uri uri) {
+        if (mListener != null) {
+            mListener.onFragmentInteraction(uri);
+        }
+    }
+
+
 }
