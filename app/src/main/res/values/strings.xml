@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Android912BaseApp</string>
+    <string name="settings_exit">exit</string>
 </resources>
