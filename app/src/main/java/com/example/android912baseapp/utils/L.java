@@ -5,7 +5,7 @@ import android.util.Log;
 public class L {
     public static final String D0 = "D0";
 
-    public static void logD(String message) {
-        Log.d(L.D0, message);
+    public static void d(String message) {
+        Log.d(D0, message);
     }
 }

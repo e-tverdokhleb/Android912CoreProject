@@ -10,12 +10,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android912baseapp.R;
 
-import java.util.LinkedList;
+import java.util.List;
 
 public class WordListAdapter extends
         RecyclerView.Adapter<WordListAdapter.WordViewHolder> {
 
-    private final LinkedList<String> mWordList;
+    private final List<String> mWordList;
     private final LayoutInflater mInflater;
 
     class WordViewHolder extends RecyclerView.ViewHolder {
@@ -44,7 +44,7 @@ public class WordListAdapter extends
         }
     }
 
-    public WordListAdapter(Context context, LinkedList<String> wordList) {
+    public WordListAdapter(Context context, List<String> wordList) {
         mInflater = LayoutInflater.from(context);
         this.mWordList = wordList;
     }
