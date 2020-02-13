@@ -1,77 +1,53 @@
 package com.example.android912baseapp.helpers;
 
-import android.os.AsyncTask;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
 
 import com.example.android912baseapp.utils.L;
 
-import java.util.Arrays;
-import java.util.concurrent.ExecutionException;
+import java.io.IOException;
 
+import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 public class LoadHelper {
-    String url = "https://reqres.in/api/users/2"; // "http://pratikbutani.x10.mx/json_data.json";
-    String result = "";
-    OkHttpHandler okHttpHandler = new OkHttpHandler(url);
+    private static String url = "https://raw.githubusercontent.com/FEND16/movie-json-data/master/json/movies-coming-soon.json";
+    //    https://github.com/FEND16/movie-json-data/blob/master/json/movies-coming-soon.json
 
-    public String loadData() {
-        try {
-            result = okHttpHandler.execute(url).get();
-        } catch (ExecutionException | InterruptedException e) {
-            e.printStackTrace();
-        }
-        return result;
-    }
-}
+    public interface OnDataReceived {
+        void onDataReceived(String data);
 
-class OkHttpHandler extends AsyncTask<String, String, String> {
-    String url;
-    OkHttpClient client = new OkHttpClient();
-
-    OkHttpHandler(String url) {
-        this.url = url;
+        void onFailure(Exception e);
     }
 
-    @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
-        Log.d(L.D0, "onPreExecute -> Loading..");
-    }
+    public static void loadDataAsync(final OnDataReceived callback) {
+        final OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
 
-    @Override
-    protected String doInBackground(String... params) {
-        Log.d(L.D0, "doInBackground ->Loading..");
-        Request.Builder builder = new Request.Builder();
-        builder.url(url);
-        Request request = builder.build();
-
-        try {
-            Response response = client.newCall(request).execute();
-            if (response.body() != null) {
-                L.d(response.body().string());
-                return response.body().string();
-            } else {
-                Log.d(L.D0, "doInBackground -> data - null");
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                try (ResponseBody rb = response.body()) {
+                    if (rb != null) {
+                        String s = rb.string();
+                        callback.onDataReceived(s);
+                        Log.d(L.D0, s);
+                    }
+                }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-            Log.e(L.D0, "doInBackground -> data - null");
-        }
-        return "";
-    }
 
-    @Override
-    protected void onPostExecute(String s) {
-        super.onPostExecute(s);
-        Log.d(L.D0, "onPostExecute.. " + s);
-    }
-
-    @Override
-    protected void onProgressUpdate(String... values) {
-        super.onProgressUpdate(values);
-        Log.d(L.D0, "onProgressUpdate" + Arrays.toString(values));
+            @Override
+            public void onFailure(Call call, IOException e) {
+                callback.onFailure(e);
+                Log.e(L.D0, e.toString());
+            }
+        });
     }
 }

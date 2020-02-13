@@ -15,7 +15,7 @@ import java.util.List;
 public class WordListAdapter extends
         RecyclerView.Adapter<WordListAdapter.WordViewHolder> {
 
-    private final List<String> mWordList;
+    private final List<Object> mWordList;
     private final LayoutInflater mInflater;
 
     class WordViewHolder extends RecyclerView.ViewHolder {
@@ -27,7 +27,7 @@ public class WordListAdapter extends
             public void onClick(View v) {
                 int mPosition = getLayoutPosition();
 
-                String element = mWordList.get(mPosition);
+                String element = ""; //mWordList.get(mPosition);
 
                 mWordList.set(mPosition, "Clicked! " + element);
                 mAdapter.notifyDataSetChanged();
@@ -44,27 +44,24 @@ public class WordListAdapter extends
         }
     }
 
-    public WordListAdapter(Context context, List<String> wordList) {
+    public WordListAdapter(Context context, List<Object> wordList) {
         mInflater = LayoutInflater.from(context);
         this.mWordList = wordList;
     }
 
-
     @Override
     public WordListAdapter.WordViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        // Inflate an item view.
         View mItemView = mInflater.inflate(
                 R.layout.wordlist_item, parent, false);
         return new WordViewHolder(mItemView, this);
     }
 
-
     @Override
     public void onBindViewHolder(WordListAdapter.WordViewHolder holder,
                                  int position) {
-        String mCurrent = mWordList.get(position);
-        holder.wordItemView.setText(mCurrent);
-        holder.wordItemView2.setText(mCurrent.toUpperCase());
+        Object mCurrent = mWordList.get(position);
+//        holder.wordItemView.setText(mCurrent);
+//        holder.wordItemView2.setText(mCurrent.toUpperCase());
     }
 
     @Override
