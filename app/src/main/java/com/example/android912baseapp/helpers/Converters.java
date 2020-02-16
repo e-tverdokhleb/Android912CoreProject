@@ -1,13 +1,11 @@
 package com.example.android912baseapp.helpers;
 
-import com.example.android912baseapp.model.Movie;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.reflect.TypeToken;
+import android.util.Log;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.example.android912baseapp.model.Movie;
+import com.example.android912baseapp.utils.L;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -17,18 +15,11 @@ public class Converters {
     public static List<Movie> convertJSonToList(String dataToConvert) {
         List<Movie> list = new ArrayList<>();
         try {
-//            JSONArray jsonArray = new JsonArray();
-            JSONObject jsonObject = new JSONObject();
-            JSONArray jsonArray = jsonObject.getJSONArray(dataToConvert);
             Type listType = new TypeToken<ArrayList<Movie>>() {
             }.getType();
-            list = new GsonBuilder().create().fromJson(jsonArray.toString(), listType);
-
-            for (Movie user : list) {
-                list.add(user);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
+            list = new GsonBuilder().create().fromJson(dataToConvert, listType);
+        } catch (Exception e) {
+            Log.e(L.D0, e.toString());
         }
         return list;
     }

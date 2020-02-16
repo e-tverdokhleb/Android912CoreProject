@@ -38,7 +38,7 @@ public class LoadHelper {
                     if (rb != null) {
                         String s = rb.string();
                         callback.onDataReceived(s);
-                        Log.d(L.D0, s);
+                        Log.d(L.D0, "Received data length:" + s.length());
                     }
                 }
             }

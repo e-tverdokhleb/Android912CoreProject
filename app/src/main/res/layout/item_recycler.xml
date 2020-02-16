@@ -12,8 +12,8 @@
         android:src="@android:drawable/ic_dialog_info" />
 
     <TextView
-        android:id="@+id/word"
-        style="@style/word_title"
+        android:id="@+id/m_title"
+        style="@style/item_movie_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="Hello World" />

@@ -8,19 +8,19 @@ public class Movie {
     private String id;
     private String title;
     private String year;
-    private Object genres;
-    private Object ratings;
-    private Object poster;
-    private Object contentRating;
-    private Object duration;
-    private Object releaseDate;
-    private Object averageRating;
-    private Object originalTitle;
-    private Object storyline;
-    private Object actors;
-    private Object imdbRating;
-    private Object posterurl;
-    private Object additionalProperties;
+    private List<String> genres = null;
+    private List<Integer> ratings = null;
+    private String poster;
+    private String contentRating;
+    private String duration;
+    private String releaseDate;
+    private Integer averageRating;
+    private String originalTitle;
+    private String storyline;
+    private List<String> actors = null;
+    private String imdbRating;
+    private String posterurl;
+    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     public String getId() {
         return id;
@@ -46,15 +46,15 @@ public class Movie {
         this.year = year;
     }
 
-    public Object getGenres() {
+    public List<String> getGenres() {
         return genres;
     }
 
-    public void setGenres(List<Object> genres) {
+    public void setGenres(List<String> genres) {
         this.genres = genres;
     }
 
-    public Object getRatings() {
+    public List<Integer> getRatings() {
         return ratings;
     }
 
@@ -62,7 +62,7 @@ public class Movie {
         this.ratings = ratings;
     }
 
-    public Object getPoster() {
+    public String getPoster() {
         return poster;
     }
 
@@ -70,7 +70,7 @@ public class Movie {
         this.poster = poster;
     }
 
-    public Object getContentRating() {
+    public String getContentRating() {
         return contentRating;
     }
 
@@ -78,7 +78,7 @@ public class Movie {
         this.contentRating = contentRating;
     }
 
-    public Object getDuration() {
+    public String getDuration() {
         return duration;
     }
 
@@ -86,7 +86,7 @@ public class Movie {
         this.duration = duration;
     }
 
-    public Object getReleaseDate() {
+    public String getReleaseDate() {
         return releaseDate;
     }
 
@@ -94,7 +94,7 @@ public class Movie {
         this.releaseDate = releaseDate;
     }
 
-    public Object getAverageRating() {
+    public Integer getAverageRating() {
         return averageRating;
     }
 
@@ -102,7 +102,7 @@ public class Movie {
         this.averageRating = averageRating;
     }
 
-    public Object getOriginalTitle() {
+    public String getOriginalTitle() {
         return originalTitle;
     }
 
@@ -110,7 +110,7 @@ public class Movie {
         this.originalTitle = originalTitle;
     }
 
-    public Object getStoryline() {
+    public String getStoryline() {
         return storyline;
     }
 
@@ -118,7 +118,7 @@ public class Movie {
         this.storyline = storyline;
     }
 
-    public Object getActors() {
+    public List<String> getActors() {
         return actors;
     }
 
@@ -126,7 +126,7 @@ public class Movie {
         this.actors = actors;
     }
 
-    public Object getImdbRating() {
+    public String getImdbRating() {
         return imdbRating;
     }
 
@@ -134,7 +134,7 @@ public class Movie {
         this.imdbRating = imdbRating;
     }
 
-    public Object getPosterurl() {
+    public String getPosterurl() {
         return posterurl;
     }
 
@@ -142,11 +142,33 @@ public class Movie {
         this.posterurl = posterurl;
     }
 
-    public Object getAdditionalProperties() {
+    public Map<String, Object> getAdditionalProperties() {
         return this.additionalProperties;
     }
 
     public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties = new Object();
+        this.additionalProperties.put(name, value);
+    }
+
+    @Override
+    public String toString() {
+        return "\n Movie{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", year='" + year + '\'' +
+                ", genres=" + genres +
+//                ", ratings=" + ratings +
+                ", poster='" + poster + '\'' +
+                ", contentRating='" + contentRating + '\'' +
+                ", duration='" + duration + '\'' +
+                ", releaseDate='" + releaseDate + '\'' +
+                ", averageRating=" + averageRating +
+                ", originalTitle='" + originalTitle + '\'' +
+                ", storyline='" + storyline + '\'' +
+                ", actors=" + actors +
+                ", imdbRating='" + imdbRating + '\'' +
+//                ", posterurl='" + posterurl + '\'' +
+                ", additionalProperties=" + additionalProperties +
+                "} \n";
     }
 }
