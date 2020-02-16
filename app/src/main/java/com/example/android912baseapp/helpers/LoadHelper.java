@@ -17,7 +17,7 @@ import okhttp3.ResponseBody;
 
 public class LoadHelper {
     private static String url = "https://raw.githubusercontent.com/FEND16/movie-json-data/master/json/movies-coming-soon.json";
-    //    https://github.com/FEND16/movie-json-data/blob/master/json/movies-coming-soon.json
+//    https://github.com/FEND16/movie-json-data/blob/master/json/movies-coming-soon.json
 
     public interface OnDataReceived {
         void onDataReceived(String data);
